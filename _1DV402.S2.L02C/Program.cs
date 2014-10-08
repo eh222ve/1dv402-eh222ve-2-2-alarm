@@ -10,18 +10,18 @@ namespace _1DV402.S2.L02C
 {
     class Program
     {
-        private static string HorizontalLine = "═══════════════════════════════════════════";
+        private static string HorizontalLine = "═══════════════════════════════════════════════";
 
         static void Main(string[] args)
         {
             MyExtensions.PrettyConsole(Strings.App_Title);
 
             MyExtensions.ChangeColor(ConsoleColor.White, ConsoleColor.DarkMagenta);
-            Console.WriteLine(" ╔═════════════════════════════════════════╗ ");
-            Console.WriteLine(" ║         Alarmklockan URLED (TM)         ║ ");
-            Console.WriteLine(" ║        Modellnummer: 1DV402S2L2C        ║ ");
-            Console.WriteLine(" ║          Tillverkad av: eh222ve         ║ ");
-            Console.WriteLine(" ╚═════════════════════════════════════════╝ ");
+            Console.WriteLine(" ╔═════════════════════════════════════════════╗ ");
+            Console.WriteLine(" ║           Alarmklockan URLED (TM)           ║ ");
+            Console.WriteLine(" ║          Modellnummer: 1DV402S2L2C          ║ ");
+            Console.WriteLine(" ║            Tillverkad av: eh222ve           ║ ");
+            Console.WriteLine(" ╚═════════════════════════════════════════════╝ ");
             MyExtensions.ChangeColor();
 
             RunTest();
@@ -136,7 +136,7 @@ namespace _1DV402.S2.L02C
             }
 
             Console.WriteLine();
-            Console.WriteLine(HorizontalLine);
+            MyExtensions.ViewMessage(HorizontalLine, ConsoleColor.DarkMagenta);
             Console.WriteLine();
         
         }
