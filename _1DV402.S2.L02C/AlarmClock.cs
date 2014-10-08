@@ -9,77 +9,145 @@ namespace _1DV402.S2.L02C
 {
     class AlarmClock
     {
-        //Innehåller referens till ett ClockDisplay[]-objekt som ansvarar för alarmtiderna
         private ClockDisplay[] _alarmTimes;
-        //Innehåller referens till ett ClockDisplay-objekt som ansvarar för väckarklockans aktuella tid
         private ClockDisplay _time;
 
+        //Omkapslar _alarmTimes
         public string[] AlarmTimes { 
-            //get-metoden ska ge en array innehållande alarmtider i form av strängar. Egenskapen konverterar alltså referenser till ClockDisplay-objekt till strängar. Vid ändring av en sträng i arrayen ska inte underliggande ClockDisplay-objekt ändras.
-            //set-metoden ska konvertera varje alarmtid, i form av en sträng, till ett ClockDisplay-objekt.
-            get; set; 
+            get 
+            {
+                int alarms = _alarmTimes.Length;
+
+                string[] alarmTimes = new string[alarms];
+
+                for (int i = 0; i < alarms; i++)
+                {
+                    alarmTimes[i] = _alarmTimes[i].ToString();
+                }
+
+                return alarmTimes;
+            }
+
+            set {
+                int alarms = value.Length;
+
+                _alarmTimes = new ClockDisplay[alarms];
+
+                for (int i = 0; i < alarms; i++)
+                {
+                    _alarmTimes[i] = new ClockDisplay(value[i]);
+                }                
+            } 
         }
         
+        //Omkaplsar _time
         public string Time {
-            //Publik egenskap av typen string som kapslar in fältet _time som är av typen ClockDisplay
-            get; set; 
+            get
+            {
+                return _time.ToString();
+            }
+            set 
+            {
+                _time = new ClockDisplay(value);
+            } 
         }
 
-        public AlarmClock() { 
-            //Standardkonstruktorn AlarmClock() ska initiera fälten så att de refererar till objekt. Ingen tilldelning får ske i konstruktorns kropp, som måste vara tom. Denna konstruktor måste därför anropa den konstruktor i klassen som har två parametrar.
+        //Construct #1
+        public AlarmClock()
+            : this (0, 0){ 
         }
 
+        //Construct #2
         public AlarmClock(int hour, int minute)
+            : this (hour, minute, hour, minute)
         {
-            //Med konstruktorn AlarmClock(int hour, int minute) ska ett objekt kunna initieras så att väckarklockan ställs på den tid som parametrarna för timme respektive minut anger. Ingen tilldelning får ske i konstruktorns kropp, som måste vara tom. Denna konstruktor måste därför anropa den konstruktor i klassen som har fyra parametrar.
-            throw new NotImplementedException();
         }
 
+        //Construct #3
         public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         {
-            //Med konstruktorn AlarmClock(int hour, int minute , int alarmHour, int alarmMinute) ska ett objekt kunna initieras så att väckarklockan ställs på den tid och alarmtid som parametrarna anger. Detta är en konstruktor som får innehålla kod som leder till att fält i klassen tilldelas värden.
-            throw new NotImplementedException();
+            _alarmTimes = new ClockDisplay[1] {new ClockDisplay(alarmHour, alarmMinute)};
+            _time = new ClockDisplay(hour, minute);
         }
 
+        //Construct #4
         public AlarmClock(string time, params string[] alarmTimes)
         {
-            //Med konstruktorn AlarmClock(string time, params string[] alarmTimes) ska ett objekt kunna initieras så att väckarklockan ställs på den tid och ett godtyckligt antal, minst en dock, alarmtider som parametrarna anger. Detta är en konstruktor som får innehålla kod som leder till att fält i klassen tilldelas värden.
-            throw new NotImplementedException();
+            AlarmTimes = alarmTimes;
+            _time = new ClockDisplay(time);
         }
 
+        //Undersöker om hashkoden överensstämmer
         public override bool Equals(object obj)
         {
-            //Överskuggar metoden Equals() i basklassen Object och returnerar ett värde som anger om den anropande instansen är lika med ett angivet objekt beträffande textbeskrivningarna innehållande aktuell tid samt alarmtider.
-            throw new NotImplementedException();
+            if (obj == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            AlarmClock ac = obj as AlarmClock;
+
+            if (ac != null && ac.GetHashCode() == this.GetHashCode())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
+        //Hämtar hashkoden för tid + alarmtider
         public override int GetHashCode() {
-            //Överskuggar metoden GetHashCode() i basklassen Object och returnerar ett heltal av typen int som beskriver det anropande objektet. Lämpligen returnerar metoden hashkoden för textbeskrivningen, d.v.s. det som metoden ToString() returnerar.
-            throw new NotImplementedException();
+            return ToString().GetHashCode();
         }
 
-        public static bool operator ==(AlarmClock a, AlarmClock b){
-            //Operatorn !=
-            //Avgör om två instanser av AlarmClock är olika. Enkel att implementera då metoden Equals() finns att tillgå.
-            throw new NotImplementedException();
+        public static bool operator !=(AlarmClock a, AlarmClock b){
+            if (ReferenceEquals(a, null))
+            {
+                return !(ReferenceEquals(b, null));
+            }
+            return !a.Equals(b);
         }
 
-        public static bool operator !=(AlarmClock a, AlarmClock b)
+        public static bool operator ==(AlarmClock a, AlarmClock b)
         {
-            //Operatorn ==
-            //Avgör om två instanser av AlarmClock är lika. Enkel att implementera då metoden Equals() finns att tillgå.
-            throw new NotImplementedException();
+
+            if (ReferenceEquals(a, null))
+            {
+                return ReferenceEquals(b, null);
+            }
+            return a.Equals(b);
         }
 
+        //Ökar klockans värde med 1 minut, returnerar true om alarm går av
         public bool TickTock() {
-            //Publik metod som anropas för att få klockan att gå en minut. Om den nya tiden överensstämmer med någon av alarmtiderna ska metoden returnera true, annars false. Inga utskrifter till konsolfönstret får göras av metoden.
-            throw new NotImplementedException();
+
+            _time.Increment();
+
+            for (int i = 0; i < AlarmTimes.Length; i++)
+            {
+                if (Time == AlarmTimes[i])
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
+        //Sträng med tid + alarmtider
         public override string ToString()
         {
-            //Publik metod som har som uppgift att returnera en sträng representerande värdet av en instans av klassen AlarmClock. Strängen ska innehålla aktuell tid samt alarmtiderna inom parenteser. Inga utskrifter till konsolfönstret får göras av metoden.
-            throw new NotImplementedException();
+            string output = Time;
+            for (int i = 0; i < AlarmTimes.Length; i++)
+            {
+                output += String.Format(" ({0})", AlarmTimes[i]);
+
+            }
+
+            return output;
         }
 
     }
