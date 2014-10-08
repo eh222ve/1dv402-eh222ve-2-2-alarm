@@ -29,7 +29,7 @@ namespace _1DV402.S2.L02C
                 }
                 else
                 {
-                    throw new FormatException(String.Format("String \"{0}\" is not a valid HH:mm format", value));
+                    throw new FormatException(String.Format(Strings.Format_Exception_Time, value));
                 }
             }
         }
