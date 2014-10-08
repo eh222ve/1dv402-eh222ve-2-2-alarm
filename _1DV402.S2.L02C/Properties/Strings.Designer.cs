@@ -59,5 +59,104 @@ namespace _1DV402.S2.L02C.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alarmklockan.
+        /// </summary>
+        internal static string App_Title {
+            get {
+                return ResourceManager.GetString("App_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tryck på valfri tangent för att avsluta.
+        /// </summary>
+        internal static string Continue_Prompt {
+            get {
+                return ResourceManager.GetString("Continue_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strängen {0,5} är inte ett giltigt tidsformat enligt &lt;HH:mm&gt;.
+        /// </summary>
+        internal static string Format_Exception_Time {
+            get {
+                return ResourceManager.GetString("Format_Exception_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av standardkonstruktorn.
+        /// </summary>
+        internal static string Test1_Description {
+            get {
+                return ResourceManager.GetString("Test1_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av konstruktorn med två parametrar:.
+        /// </summary>
+        internal static string Test2_Description {
+            get {
+                return ResourceManager.GetString("Test2_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av konstruktorn med fyra parametrar:.
+        /// </summary>
+        internal static string Test3_Description {
+            get {
+                return ResourceManager.GetString("Test3_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av konstruktorn med minst två parametrar:.
+        /// </summary>
+        internal static string Test4_Description {
+            get {
+                return ResourceManager.GetString("Test4_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ställer ett befintligt AlarmClock-objekt till 23:58 och låter den gå 13 minuter..
+        /// </summary>
+        internal static string Test5_Description {
+            get {
+                return ResourceManager.GetString("Test5_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ställer befintligt AlarmClock-objekt till tiden 6:12 och alarmtiden till 6:15 och låter den gå 6 minuter..
+        /// </summary>
+        internal static string Test6_Description {
+            get {
+                return ResourceManager.GetString("Test6_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av egenskaperna så att undantag kastas då tid och alarmtid tilldelas felaktiga värden..
+        /// </summary>
+        internal static string Test7_Description {
+            get {
+                return ResourceManager.GetString("Test7_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test av konstruktorer så att undantag kastas då tid och alarmtid tilldelas felaktiga värden..
+        /// </summary>
+        internal static string Test8_Description {
+            get {
+                return ResourceManager.GetString("Test8_Description", resourceCulture);
+            }
+        }
     }
 }
