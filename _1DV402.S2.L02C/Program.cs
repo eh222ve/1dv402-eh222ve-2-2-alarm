@@ -161,16 +161,21 @@ namespace _1DV402.S2.L02C
 
         //Kör klockan givet antal minuter
         private static void Run(AlarmClock ac, int minutes) {
+            SoundPlayer sp = new SoundPlayer("../../Alarm.wav");
+            sp.Load();
+            
             for (int i = 0; i < minutes; i++)
             {
                 if (ac.TickTock())
                 {
                     MyExtensions.ViewMessage(String.Format(" ♫ {0} - Vakna!", ac.ToString()), ConsoleColor.White, ConsoleColor.DarkMagenta);
+                    sp.PlaySync();
                 }
 
                 Console.WriteLine("   {0}", ac.ToString());
             }
-        
+
+            sp.Dispose();
         }
     }
 }
