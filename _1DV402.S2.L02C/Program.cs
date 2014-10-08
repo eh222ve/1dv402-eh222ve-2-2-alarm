@@ -30,6 +30,7 @@ namespace _1DV402.S2.L02C
             Console.ReadKey();
         }
 
+        //Kör alla tester
         private static void RunTest() {
 
             AlarmClock ac = new AlarmClock();
@@ -140,6 +141,7 @@ namespace _1DV402.S2.L02C
         
         }
 
+        //Skriver t rubrik för individuellt test
         private static void ViewTestHeader(string title, string description) {
 
             Console.WriteLine();
@@ -152,10 +154,12 @@ namespace _1DV402.S2.L02C
                    
         }
 
+        //Visar upp felmeddelande
         private static void ViewErrorMessage(string message) {
             MyExtensions.ViewMessage(message, ConsoleColor.White, ConsoleColor.Red);
         }
 
+        //Kör klockan givet antal minuter
         private static void Run(AlarmClock ac, int minutes) {
             for (int i = 0; i < minutes; i++)
             {
