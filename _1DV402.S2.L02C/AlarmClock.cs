@@ -140,7 +140,7 @@ namespace _1DV402.S2.L02C
         //Sträng med tid + alarmtider
         public override string ToString()
         {
-            string output = Time;
+            string output = String.Format("{0, 6}",Time);
             for (int i = 0; i < AlarmTimes.Length; i++)
             {
                 output += String.Format(" ({0})", AlarmTimes[i]);
